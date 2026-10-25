@@ -18,8 +18,8 @@
   --card-shadow: 0 4px 18px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04);
   --card-shadow-hover: 0 10px 28px rgba(0, 0, 0, 0.12), 0 3px 6px rgba(0, 0, 0, 0.05);
   
-  /* Hero image asset path (adjust filename if using hero.jpg or hero-bg.png) */
-  --hero-image: url('assets/hero.jpg');
+  /* Hero image asset path */
+  --hero-image: url('assets/main-banner.png');
 }
 
 /* ==========================================================================
@@ -93,31 +93,36 @@ img {
 }
 
 /* ==========================================================================
-   Hero Section
+   Hero Section Base (Desktop Default)
    ========================================================================== */
 .hero {
   position: relative;
-  background-color: #3b2c27; /* Fallback tone */
+  background-color: #3b2c27;
   background-image: 
     linear-gradient(90deg, rgba(20, 15, 12, 0.75) 0%, rgba(20, 15, 12, 0.45) 45%, rgba(0, 0, 0, 0) 75%),
     var(--hero-image);
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center right;
+  background-position: right center;
   color: var(--color-text-light);
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 580px;
 }
 
 .hero__container {
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 120px 32px 160px;
+  padding: 100px 32px 140px;
   display: flex;
   align-items: center;
 }
 
 .hero__text-box {
-  max-width: 460px;
+  max-width: 440px;
   z-index: 2;
 }
 
@@ -136,7 +141,9 @@ img {
   color: rgba(255, 255, 255, 0.92);
 }
 
-/* Hero Wave Divider */
+/* ==========================================================================
+   Hero Wave Divider (assets/banner-wave.svg)
+   ========================================================================== */
 .hero__wave-wrapper {
   position: absolute;
   bottom: -1px;
@@ -145,21 +152,14 @@ img {
   overflow: hidden;
   line-height: 0;
   z-index: 3;
+  pointer-events: none;
 }
 
 .hero__wave {
-  position: relative;
-  display: block;
   width: 100%;
   height: 65px;
-}
-
-.hero__wave-bg {
-  fill: rgba(255, 255, 255, 0.35);
-}
-
-.hero__wave-fg {
-  fill: var(--color-bg-page);
+  display: block;
+  object-fit: fill;
 }
 
 /* ==========================================================================
@@ -240,7 +240,6 @@ img {
   margin: 0 0 12px 0;
 }
 
-/* Supports both .card_content (from snippet) and .card__content */
 .card_content,
 .card__content {
   font-size: 0.95rem;
@@ -250,13 +249,12 @@ img {
 }
 
 /* ==========================================================================
-   RESPONSIVE LAYOUTS
+   RESPONSIVE BREAKPOINTS
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
    1. Desktop View (> 1024px)
-   - 3 Column Grid
-   - Vertical Cards (Image Top, Text Bottom)
+   - 3 Column Grid, Vertical Cards
    -------------------------------------------------------------------------- */
 @media (min-width: 1025px) {
   .services__cards {
@@ -282,16 +280,16 @@ img {
 
 /* --------------------------------------------------------------------------
    2. Tablet - Wide View (851px - 1024px)
-   - Stacked 1 Column
-   - Horizontal Cards (Image on Left ~42%, Text on Right ~58%)
+   - Horizontal Cards, dog clearly on right
    -------------------------------------------------------------------------- */
 @media (min-width: 851px) and (max-width: 1024px) {
   .hero {
-    background-position: center right 15%;
+    min-height: 540px;
+    background-position: 60% center;
   }
 
   .hero__container {
-    padding: 100px 32px 140px;
+    padding: 90px 32px 130px;
   }
 
   .services__container {
@@ -326,24 +324,34 @@ img {
 }
 
 /* --------------------------------------------------------------------------
-   3. Tablet - Tall View (601px - 850px)
-   - Stacked 1 Column
-   - Horizontal Cards formatted for narrower tablet viewports
+   3. Tablet - Tall View (601px - 850px) - (Matches your screenshot)
+   - Dog framed on right (background-position: 60% center)
+   - Text aligned nicely on left
+   - Horizontal Cards
    -------------------------------------------------------------------------- */
 @media (min-width: 601px) and (max-width: 850px) {
   .hero {
-    background-position: 65% center;
+    min-height: 650px;
+    background-position: 60% center;
     background-image: 
-      linear-gradient(90deg, rgba(20, 15, 12, 0.8) 0%, rgba(20, 15, 12, 0.5) 55%, rgba(0, 0, 0, 0.1) 100%),
+      linear-gradient(90deg, rgba(20, 15, 12, 0.78) 0%, rgba(20, 15, 12, 0.42) 55%, rgba(0, 0, 0, 0) 80%),
       var(--hero-image);
   }
 
   .hero__container {
-    padding: 90px 28px 120px;
+    padding: 80px 32px 130px;
+  }
+
+  .hero__text-box {
+    max-width: 380px; /* Constrains text width so it does not overlap the dog */
   }
 
   .hero__title {
-    font-size: 2.4rem;
+    font-size: 2.35rem;
+  }
+
+  .hero__content {
+    font-size: 1.05rem;
   }
 
   .services__container {
@@ -362,13 +370,13 @@ img {
   }
 
   .card__image {
-    width: 40%;
+    width: 42%;
     flex-shrink: 0;
   }
 
   .card__body {
-    width: 60%;
-    padding: 24px 28px;
+    width: 58%;
+    padding: 26px 30px;
     justify-content: center;
   }
 
@@ -378,42 +386,51 @@ img {
 
   .card_content,
   .card__content {
-    font-size: 0.9rem;
-    line-height: 1.5;
+    font-size: 0.92rem;
+    line-height: 1.55;
     margin-bottom: 16px;
   }
 }
 
 /* --------------------------------------------------------------------------
    4. Mobile View (<= 600px)
-   - Vertical gradient overlay for text readability
-   - Stacked 1 Column
-   - Vertical Cards (Image Top, Text Bottom)
+   - Centered directly on dog with vertical gradient
+   - Stacked vertical cards
    -------------------------------------------------------------------------- */
 @media (max-width: 600px) {
   .hero {
-    background-position: 70% top;
+    min-height: 100vh;
+    background-position: 70% center;
     background-image: 
-      linear-gradient(180deg, rgba(20, 15, 12, 0.72) 0%, rgba(20, 15, 12, 0.45) 50%, rgba(0, 0, 0, 0.15) 100%),
+      linear-gradient(180deg, 
+        rgba(20, 15, 12, 0.75) 0%, 
+        rgba(20, 15, 12, 0.45) 45%, 
+        rgba(0, 0, 0, 0.1) 85%
+      ),
       var(--hero-image);
   }
 
   .hero__container {
-    padding: 70px 20px 110px;
+    padding: 70px 24px 140px;
+  }
+
+  .hero__text-box {
+    max-width: 100%;
   }
 
   .hero__title {
-    font-size: 2.1rem;
+    font-size: 2.15rem;
     margin-bottom: 14px;
   }
 
   .hero__content {
     font-size: 1rem;
     margin-bottom: 24px;
+    max-width: 320px;
   }
 
   .hero__wave {
-    height: 45px;
+    height: 38px;
   }
 
   .services {
