@@ -1,0 +1,462 @@
+/* ==========================================================================
+   Design Tokens & Variables
+   ========================================================================== */
+:root {
+  --font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Colors based on Figma Asset Sheets */
+  --color-primary: #d9651a;         /* Button default state */
+  --color-primary-hover: #fa6400;   /* Button hover/active state */
+  --color-heading: #2e3440;         /* Headings dark charcoal */
+  --color-text: #59616e;            /* Paragraphs body gray */
+  --color-text-light: #ffffff;
+  --color-bg-page: #ffffff;
+  --color-card-bg: #ffffff;
+  
+  /* Shadows and Borders */
+  --card-radius: 12px;
+  --card-shadow: 0 4px 18px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04);
+  --card-shadow-hover: 0 10px 28px rgba(0, 0, 0, 0.12), 0 3px 6px rgba(0, 0, 0, 0.05);
+  
+  /* Hero image asset path (adjust filename if using hero.jpg or hero-bg.png) */
+  --hero-image: url('assets/hero.jpg');
+}
+
+/* ==========================================================================
+   Global Reset & Base
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-bg-page);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ==========================================================================
+   Buttons & Links (Figma Assets)
+   ========================================================================== */
+.btn {
+  display: inline-block;
+  font-family: var(--font-family);
+  font-weight: 700;
+  text-decoration: none;
+  text-align: center;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+}
+
+.btn--primary {
+  background-color: var(--color-primary);
+  color: var(--color-text-light);
+  padding: 13px 28px;
+  font-size: 1rem;
+}
+
+.btn--primary:hover,
+.btn--primary:focus {
+  background-color: var(--color-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(250, 100, 0, 0.35);
+}
+
+.card__link {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--color-primary);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  margin-top: auto;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.card__link:hover,
+.card__link:focus {
+  color: var(--color-primary-hover);
+  transform: translateX(3px);
+}
+
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
+.hero {
+  position: relative;
+  background-color: #3b2c27; /* Fallback tone */
+  background-image: 
+    linear-gradient(90deg, rgba(20, 15, 12, 0.75) 0%, rgba(20, 15, 12, 0.45) 45%, rgba(0, 0, 0, 0) 75%),
+    var(--hero-image);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center right;
+  color: var(--color-text-light);
+  overflow: hidden;
+}
+
+.hero__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 120px 32px 160px;
+  display: flex;
+  align-items: center;
+}
+
+.hero__text-box {
+  max-width: 460px;
+  z-index: 2;
+}
+
+.hero__title {
+  font-weight: 700;
+  font-size: 2.85rem;
+  line-height: 1.15;
+  margin: 0 0 18px 0;
+  color: var(--color-text-light);
+}
+
+.hero__content {
+  font-size: 1.125rem;
+  line-height: 1.55;
+  margin: 0 0 28px 0;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+/* Hero Wave Divider */
+.hero__wave-wrapper {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  z-index: 3;
+}
+
+.hero__wave {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 65px;
+}
+
+.hero__wave-bg {
+  fill: rgba(255, 255, 255, 0.35);
+}
+
+.hero__wave-fg {
+  fill: var(--color-bg-page);
+}
+
+/* ==========================================================================
+   Services Section (Base)
+   ========================================================================== */
+.services {
+  padding: 40px 24px 100px;
+}
+
+.services__container {
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+.services__header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 56px;
+}
+
+.services__title {
+  font-weight: 700;
+  font-size: 2.15rem;
+  color: var(--color-heading);
+  margin: 0 0 16px 0;
+}
+
+.services__content {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  margin: 0;
+}
+
+/* ==========================================================================
+   Card Component Base
+   ========================================================================== */
+.card {
+  background: var(--color-card-bg);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  display: flex;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--card-shadow-hover);
+}
+
+.card__image {
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+
+.card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.card:hover .card__image img {
+  transform: scale(1.03);
+}
+
+.card__body {
+  display: flex;
+  flex-direction: column;
+}
+
+.card__title {
+  font-weight: 700;
+  font-size: 1.35rem;
+  color: var(--color-heading);
+  margin: 0 0 12px 0;
+}
+
+/* Supports both .card_content (from snippet) and .card__content */
+.card_content,
+.card__content {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  margin: 0 0 20px 0;
+}
+
+/* ==========================================================================
+   RESPONSIVE LAYOUTS
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Desktop View (> 1024px)
+   - 3 Column Grid
+   - Vertical Cards (Image Top, Text Bottom)
+   -------------------------------------------------------------------------- */
+@media (min-width: 1025px) {
+  .services__cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+
+  .card {
+    flex-direction: column;
+  }
+
+  .card__image {
+    width: 100%;
+    height: 220px;
+  }
+
+  .card__body {
+    padding: 28px 24px 28px;
+    flex-grow: 1;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   2. Tablet - Wide View (851px - 1024px)
+   - Stacked 1 Column
+   - Horizontal Cards (Image on Left ~42%, Text on Right ~58%)
+   -------------------------------------------------------------------------- */
+@media (min-width: 851px) and (max-width: 1024px) {
+  .hero {
+    background-position: center right 15%;
+  }
+
+  .hero__container {
+    padding: 100px 32px 140px;
+  }
+
+  .services__container {
+    max-width: 840px;
+  }
+
+  .services__cards {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .card {
+    flex-direction: row;
+    min-height: 250px;
+  }
+
+  .card__image {
+    width: 44%;
+    flex-shrink: 0;
+  }
+
+  .card__body {
+    width: 56%;
+    padding: 32px 36px;
+    justify-content: center;
+  }
+
+  .card__title {
+    font-size: 1.45rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. Tablet - Tall View (601px - 850px)
+   - Stacked 1 Column
+   - Horizontal Cards formatted for narrower tablet viewports
+   -------------------------------------------------------------------------- */
+@media (min-width: 601px) and (max-width: 850px) {
+  .hero {
+    background-position: 65% center;
+    background-image: 
+      linear-gradient(90deg, rgba(20, 15, 12, 0.8) 0%, rgba(20, 15, 12, 0.5) 55%, rgba(0, 0, 0, 0.1) 100%),
+      var(--hero-image);
+  }
+
+  .hero__container {
+    padding: 90px 28px 120px;
+  }
+
+  .hero__title {
+    font-size: 2.4rem;
+  }
+
+  .services__container {
+    max-width: 700px;
+  }
+
+  .services__cards {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .card {
+    flex-direction: row;
+    min-height: 230px;
+  }
+
+  .card__image {
+    width: 40%;
+    flex-shrink: 0;
+  }
+
+  .card__body {
+    width: 60%;
+    padding: 24px 28px;
+    justify-content: center;
+  }
+
+  .card__title {
+    font-size: 1.3rem;
+  }
+
+  .card_content,
+  .card__content {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. Mobile View (<= 600px)
+   - Vertical gradient overlay for text readability
+   - Stacked 1 Column
+   - Vertical Cards (Image Top, Text Bottom)
+   -------------------------------------------------------------------------- */
+@media (max-width: 600px) {
+  .hero {
+    background-position: 70% top;
+    background-image: 
+      linear-gradient(180deg, rgba(20, 15, 12, 0.72) 0%, rgba(20, 15, 12, 0.45) 50%, rgba(0, 0, 0, 0.15) 100%),
+      var(--hero-image);
+  }
+
+  .hero__container {
+    padding: 70px 20px 110px;
+  }
+
+  .hero__title {
+    font-size: 2.1rem;
+    margin-bottom: 14px;
+  }
+
+  .hero__content {
+    font-size: 1rem;
+    margin-bottom: 24px;
+  }
+
+  .hero__wave {
+    height: 45px;
+  }
+
+  .services {
+    padding: 20px 16px 70px;
+  }
+
+  .services__header {
+    margin-bottom: 36px;
+  }
+
+  .services__title {
+    font-size: 1.8rem;
+  }
+
+  .services__content {
+    font-size: 0.95rem;
+  }
+
+  .services__cards {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .card {
+    flex-direction: column;
+  }
+
+  .card__image {
+    width: 100%;
+    height: 210px;
+  }
+
+  .card__body {
+    padding: 24px 20px;
+  }
+
+  .card__title {
+    font-size: 1.25rem;
+  }
+
+  .card_content,
+  .card__content {
+    font-size: 0.92rem;
+  }
+}
