@@ -2,21 +2,19 @@
    Design Tokens & Variables
    ========================================================================== */
 :root {
-  --font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-family: 'Quicksand', sans-serif;
 
   /* Colors based on Figma Asset Sheets */
-  --color-primary: #d9651a;         /* Button default state */
-  --color-primary-hover: #fa6400;   /* Button hover/active state */
-  --color-heading: #2e3440;         /* Headings dark charcoal */
-  --color-text: #59616e;            /* Paragraphs body gray */
+  --color-primary: #FF6D00;         /* Button default state */
+  --color-primary-hover: #DE6C17;   /* Button hover/active state */
+  --color-heading: #36413C;         /* Headings dark charcoal */
+  --color-text: #5E6E66;            /* Paragraphs body gray */
   --color-text-light: #ffffff;
   --color-bg-page: #ffffff;
   --color-card-bg: #ffffff;
   
-  /* Shadows and Borders */
-  --card-radius: 12px;
-  --card-shadow: 0 4px 18px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04);
-  --card-shadow-hover: 0 10px 28px rgba(0, 0, 0, 0.12), 0 3px 6px rgba(0, 0, 0, 0.05);
+  /* Borders */
+  --card-radius: 8px;
   
   /* Hero image asset path */
   --hero-image: url('assets/main-banner.png');
@@ -36,8 +34,7 @@ body {
   line-height: 1.6;
   color: var(--color-text);
   background-color: var(--color-bg-page);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
 }
 
 img {
@@ -55,15 +52,15 @@ img {
   text-decoration: none;
   text-align: center;
   border: none;
-  border-radius: 6px;
+  border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .btn--primary {
   background-color: var(--color-primary);
   color: var(--color-text-light);
-  padding: 13px 28px;
+  padding: 12px 33px;
   font-size: 1rem;
 }
 
@@ -83,25 +80,19 @@ img {
   display: inline-flex;
   align-items: center;
   margin-top: auto;
-  transition: color 0.2s ease, transform 0.2s ease;
+ 
 }
 
-.card__link:hover,
-.card__link:focus {
-  color: var(--color-primary-hover);
-  transform: translateX(3px);
-}
+
 
 /* ==========================================================================
    Hero Section Base (Desktop Default)
    ========================================================================== */
 .hero {
   position: relative;
-  background-color: #3b2c27;
   background-image: 
     linear-gradient(90deg, rgba(20, 15, 12, 0.75) 0%, rgba(20, 15, 12, 0.45) 45%, rgba(0, 0, 0, 0) 75%),
     var(--hero-image);
-  background-repeat: no-repeat;
   background-size: cover;
   background-position: right center;
   color: var(--color-text-light);
@@ -203,14 +194,9 @@ img {
   box-shadow: var(--card-shadow);
   border: 1px solid rgba(0, 0, 0, 0.05);
   overflow: hidden;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
   display: flex;
 }
 
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--card-shadow-hover);
-}
 
 .card__image {
   overflow: hidden;
@@ -224,9 +210,6 @@ img {
   transition: transform 0.35s ease;
 }
 
-.card:hover .card__image img {
-  transform: scale(1.03);
-}
 
 .card__body {
   display: flex;
@@ -324,9 +307,9 @@ img {
 }
 
 /* --------------------------------------------------------------------------
-   3. Tablet - Tall View (601px - 850px) - (Matches your screenshot)
+   3. Tablet - Tall View (601px - 850px) 
    - Dog framed on right (background-position: 60% center)
-   - Text aligned nicely on left
+   - Text aligned on left
    - Horizontal Cards
    -------------------------------------------------------------------------- */
 @media (min-width: 601px) and (max-width: 850px) {
@@ -425,7 +408,7 @@ img {
   }
 
   .hero__text-box {
-    /* Constrains width to match the exact line breaks in the Figma screenshot */
+    /* Constrains width to match the exact line breaks */
     max-width: 285px;
   }
 
